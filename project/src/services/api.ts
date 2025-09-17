@@ -9,6 +9,25 @@ const api = axios.create({
   },
 });
 
+export interface UserProfile {
+  name: string;
+  email: string;
+  phone: string;
+  profilePicture: string | null;
+}
+
+export const userProfileApi = {
+  getProfile: async (): Promise<UserProfile> => {
+    const response = await api.get('/profile');
+    return response.data;
+  },
+
+  updateProfile: async (profile: UserProfile): Promise<UserProfile> => {
+    const response = await api.put('/profile', profile);
+    return response.data;
+  }
+};
+
 export interface ReceiptItem {
   name: string;
   price: number;

@@ -1,6 +1,35 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:8080/api';
+const API_BASE_URL = 'http://localhost:8080/api/v1';
+
+// Authentication interfaces
+export interface LoginCredentials {
+  username: string;
+  password: string;
+}
+
+export interface RegisterData {
+  firstName: string;
+  lastName: string;
+  username: string;
+  email: string;
+  password: string;
+}
+
+export interface AuthUser {
+  id: string;
+  username: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+}
+
+export interface AuthResponse {
+  success: boolean;
+  message: string;
+  token: string;
+  user: AuthUser;
+}
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -8,6 +37,57 @@ const api = axios.create({
     'Content-Type': 'application/json',
   },
 });
+
+// Request interceptor to add auth token
+api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+// Response interceptor to handle auth errors
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401 || error.response?.status === 403) {
+      // Clear token and redirect to login
+      localStorage.removeItem('token');
+      window.location.href = '/login';
+    }
+    return Promise.reject(error);
+  }
+);
+
+// Auth API
+export const authApi = {
+  login: async (credentials: LoginCredentials): Promise<AuthResponse> => {
+    const response = await api.post('/login', credentials);
+    if (response.data.token) {
+      localStorage.setItem('token', response.data.token);
+    }
+    return response.data;
+  },
+
+  register: async (userData: RegisterData): Promise<AuthResponse> => {
+    const response = await api.post('/register', userData);
+    if (response.data.token) {
+      localStorage.setItem('token', response.data.token);
+    }
+    return response.data;
+  },
+
+  logout: () => {
+    localStorage.removeItem('token');
+    window.location.href = '/login';
+  },
+};
 
 export interface ReceiptItem {
   name: string;
@@ -58,16 +138,6 @@ export const receiptApi = {
     return response.data;
   },
 
-  getReceiptById: async (id: string): Promise<Receipt> => {
-    const response = await api.get(`/receipts/${id}`);
-    return response.data;
-  },
-
-  updateReceipt: async (id: string, receipt: Partial<Receipt>): Promise<Receipt> => {
-    const response = await api.put(`/receipts/${id}`, receipt);
-    return response.data;
-  },
-
   deleteReceipt: async (id: string): Promise<void> => {
     await api.delete(`/receipts/${id}`);
   },
@@ -79,21 +149,4 @@ export const analyticsApi = {
     const response = await api.get('/analytics/summary');
     return response.data;
   },
-
-  getMonthlySpending: async (): Promise<Record<string, number>> => {
-    const response = await api.get('/analytics/monthly');
-    return response.data;
-  },
-
-  getTopItems: async (): Promise<Record<string, number>> => {
-    const response = await api.get('/analytics/top-items');
-    return response.data;
-  },
-
-  getRecentReceipts: async (limit: number = 5): Promise<Receipt[]> => {
-    const response = await api.get(`/analytics/recent-receipts?limit=${limit}`);
-    return response.data;
-  },
 };
-
-export default api;

@@ -1,27 +1,26 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { authApi } from "../services/api";
 import loginImage from "./login.png";
 
 export default function LogIn() {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError("");
     try {
-      const response = await axios.post("http://localhost:8080/api/v1/login", {
-        username,
-        password,
-      });
-      if (response.data) {
+      const response = await authApi.login({ username, password });
+      if (response.success) {
         navigate("/dashboard");
       } else {
-        alert("Invalid credentials");
+        setError(response.message || "Invalid credentials");
       }
     } catch (err) {
-      alert("Error logging in");
+      setError(err instanceof Error ? err.message : "Error logging in");
     }
   };
 
@@ -65,9 +64,13 @@ export default function LogIn() {
               />
             </div>
 
+            {error && (
+              <div className="text-red-500 text-sm text-center">{error}</div>
+            )}
+
             <button
               type="submit"
-              className="w-full bg-lime-500 text-white py-2 rounded-lg hover:bg-lime-400 transition duration-300"
+              className="w-full bg-blue-800 text-white py-2 rounded-lg hover:bg-blue-900 transition duration-300"
             >
               Log In
             </button>

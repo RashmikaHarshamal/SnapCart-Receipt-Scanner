@@ -36,15 +36,15 @@ const Home: React.FC = () => {
                   data-swiper-parallax="-300"
                   className="text-4xl md:text-5xl font-bold leading-tight mb-4 text-white drop-shadow-lg"
                 >
-                  Snap <span className="text-orange-400">Cart</span> - Receipt<br />
-                  <span className="text-orange-400">Scanner</span>
+                  Snap <span className="text-lime-500">Cart</span> - Receipt<br />
+                  <span className="text-lime-500">Scanner</span>
                 </h2>
                 <p
                   data-swiper-parallax="-400"
                   className="text-xl mb-6 text-white drop-shadow-md"
                 >
                   Email:{" "}
-                  <span className="font-bold text-orange-400">
+                  <span className="font-bold text-lime-500">
                     rashmikaharshamal169@gmail.com
                   </span>
                 </p>

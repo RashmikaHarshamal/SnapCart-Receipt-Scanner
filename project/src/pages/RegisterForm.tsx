@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { authApi, RegisterData } from "../services/api";
 import loginImage from "./login.png";
 
 export default function RegisterForm() {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
+  const [error, setError] = useState<string>("");
+  const [formData, setFormData] = useState<RegisterData & { confirmPassword: string }>({
     firstName: "",
     lastName: "",
     username: "",
@@ -16,27 +17,27 @@ export default function RegisterForm() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    setError(""); // Clear error when user types
   };
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError("");
+
     if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match");
+      setError("Passwords do not match");
       return;
     }
+
     try {
-      const response = await axios.post(
-        "http://localhost:8080/api/v1/register",
-        formData
-      );
-      if (response.data.success) {
-        alert("Registration successful!");
+      const response = await authApi.register(formData);
+      if (response.success) {
         navigate("/login");
       } else {
-        alert("Registration failed");
+        setError(response.message || "Registration failed");
       }
     } catch (err) {
-      alert("Error registering user");
+      setError(err instanceof Error ? err.message : "An unexpected error occurred");
     }
   };
 
@@ -64,6 +65,7 @@ export default function RegisterForm() {
               placeholder="First Name"
               value={formData.firstName}
               onChange={handleChange}
+              required
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-800"
             />
             <input
@@ -72,6 +74,7 @@ export default function RegisterForm() {
               placeholder="Last Name"
               value={formData.lastName}
               onChange={handleChange}
+              required
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-800"
             />
             <input
@@ -80,6 +83,7 @@ export default function RegisterForm() {
               placeholder="Username"
               value={formData.username}
               onChange={handleChange}
+              required
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-800"
             />
             <input
@@ -88,6 +92,7 @@ export default function RegisterForm() {
               placeholder="Email"
               value={formData.email}
               onChange={handleChange}
+              required
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-800"
             />
             <input
@@ -96,6 +101,7 @@ export default function RegisterForm() {
               placeholder="Password"
               value={formData.password}
               onChange={handleChange}
+              required
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-800"
             />
             <input
@@ -104,12 +110,17 @@ export default function RegisterForm() {
               placeholder="Confirm Password"
               value={formData.confirmPassword}
               onChange={handleChange}
+              required
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-800"
             />
 
+            {error && (
+              <div className="text-red-500 text-sm text-center">{error}</div>
+            )}
+
             <button
               type="submit"
-              className="w-full bg-lime-500 text-white py-2 rounded-lg hover:bg-lime-400 transition duration-300"
+              className="w-full bg-blue-800 text-white py-2 rounded-lg hover:bg-blue-900 transition duration-300"
             >
               Register
             </button>

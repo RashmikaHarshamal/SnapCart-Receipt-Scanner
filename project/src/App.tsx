@@ -5,6 +5,9 @@ import Dashboard from './pages/Dashboard';
 import UploadReceipt from './pages/UploadReceipt';
 import Analytics from './pages/Analytics';
 import Receipts from './pages/Receipts';
+import Admin from './pages/Admin';
+
+';
 
 function App() {
   return (

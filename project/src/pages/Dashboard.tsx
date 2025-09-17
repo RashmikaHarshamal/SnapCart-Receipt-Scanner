@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Receipt, DollarSign, TrendingUp, ShoppingBag } from 'lucide-react';
 import { analyticsApi, AnalyticsData } from '../services/api';
 import LoadingSpinner from '../components/LoadingSpinner';
+import Header from '../components/Header';
 
 const Dashboard: React.FC = () => {
   const [analytics, setAnalytics] = useState<AnalyticsData | null>(null);
@@ -54,7 +55,9 @@ const Dashboard: React.FC = () => {
   ];
 
   return (
-    <div className="space-y-8">
+    <div>
+      <Header />
+      <div className="space-y-8">
       {/* Header */}
       <div className="text-center">
         <h1 className="text-4xl font-bold text-gray-900 mb-4">
@@ -165,6 +168,7 @@ const Dashboard: React.FC = () => {
           </div>
         </div>
       )}
+    </div>
     </div>
   );
 };

@@ -17,6 +17,18 @@ export interface ReceiptItem {
   totalPrice?: number;
 }
 
+export interface UserProfile {
+  name: string;
+  email: string;
+  phone: string;
+  profilePicture: string | null;
+}
+
+export interface PasswordChange {
+  currentPassword: string;
+  newPassword: string;
+}
+
 export interface Receipt {
   id: string;
   filename: string;
@@ -94,6 +106,35 @@ export const analyticsApi = {
     const response = await api.get(`/analytics/recent-receipts?limit=${limit}`);
     return response.data;
   },
+};
+
+// User Profile API
+export const userProfileApi = {
+  getProfile: async (): Promise<UserProfile> => {
+    const response = await api.get('/user/profile');
+    return response.data;
+  },
+
+  updateProfile: async (profile: Partial<UserProfile>): Promise<UserProfile> => {
+    const response = await api.put('/user/profile', profile);
+    return response.data;
+  },
+
+  uploadProfilePicture: async (file: File): Promise<UserProfile> => {
+    const formData = new FormData();
+    formData.append('file', file);
+    
+    const response = await api.post('/user/profile/picture', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    return response.data;
+  },
+
+  changePassword: async (data: PasswordChange): Promise<void> => {
+    await api.post('/user/change-password', data);
+  }
 };
 
 export default api;

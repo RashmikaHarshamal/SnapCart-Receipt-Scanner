@@ -5,6 +5,7 @@ import Dashboard from './pages/Dashboard';
 import UploadReceipt from './pages/UploadReceipt';
 import Analytics from './pages/Analytics';
 import Receipts from './pages/Receipts';
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/upload" element={<UploadReceipt />} />
             <Route path="/analytics" element={<Analytics />} />
             <Route path="/receipts" element={<Receipts />} />
+            <Route path="/profile" element={<Profile />} />
           </Routes>
         </main>
       </div>

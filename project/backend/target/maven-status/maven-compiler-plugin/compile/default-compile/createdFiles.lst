@@ -1,0 +1,13 @@
+com\snapcart\service\OCRService.class
+com\snapcart\model\AnalyticsData.class
+com\snapcart\model\Receipt.class
+com\snapcart\SnapCartApplication.class
+com\snapcart\config\GoogleVisionConfig.class
+com\snapcart\controller\AnalyticsController.class
+com\snapcart\repository\ReceiptRepository.class
+com\snapcart\service\AnalyticsService.class
+com\snapcart\config\CorsConfig$1.class
+com\snapcart\controller\ReceiptController.class
+com\snapcart\service\ReceiptService.class
+com\snapcart\config\CorsConfig.class
+com\snapcart\model\ReceiptItem.class

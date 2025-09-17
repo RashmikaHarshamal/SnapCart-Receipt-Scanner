@@ -15,6 +15,7 @@ import { Bar, Line, Doughnut } from 'react-chartjs-2';
 import { TrendingUp, DollarSign, ShoppingBag, Calendar } from 'lucide-react';
 import { analyticsApi, AnalyticsData } from '../services/api';
 import LoadingSpinner from '../components/LoadingSpinner';
+import Header from '../components/Header';
 
 ChartJS.register(
   CategoryScale,
@@ -129,8 +130,11 @@ const Analytics: React.FC = () => {
   };
 
   return (
-    <div className="space-y-8">
+    <div>
+      <Header />
+      <div className="space-y-8">
       {/* Header */}
+      
       <div className="text-center">
         <h1 className="text-3xl font-bold text-gray-900 mb-4">Analytics Dashboard</h1>
         <p className="text-gray-600">Insights into your spending patterns and habits</p>
@@ -258,6 +262,7 @@ const Analytics: React.FC = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

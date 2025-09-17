@@ -3,6 +3,7 @@ import { useDropzone } from 'react-dropzone';
 import { Upload, CheckCircle, XCircle, Image, FileText } from 'lucide-react';
 import { receiptApi, Receipt } from '../services/api';
 import LoadingSpinner from '../components/LoadingSpinner';
+import Header from '../components/Header';
 
 const UploadReceipt: React.FC = () => {
   const [uploading, setUploading] = useState(false);
@@ -36,7 +37,9 @@ const UploadReceipt: React.FC = () => {
   });
 
   return (
-    <div className="max-w-4xl mx-auto space-y-8">
+    <div>
+      <Header />
+        <div className="max-w-4xl mx-auto space-y-8">
       {/* Header */}
       <div className="text-center">
         <h1 className="text-3xl font-bold text-gray-900 mb-4">Upload Receipt</h1>
@@ -170,6 +173,8 @@ const UploadReceipt: React.FC = () => {
         </div>
       )}
     </div>
+    </div>
+    
   );
 };
 

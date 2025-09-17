@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { Upload, CheckCircle, XCircle, Image, FileText } from 'lucide-react';
+import { Upload, CheckCircle, XCircle, FileText } from 'lucide-react';
 import { receiptApi, Receipt } from '../services/api';
 import LoadingSpinner from '../components/LoadingSpinner';
 import Header from '../components/Header';
@@ -21,8 +21,8 @@ const UploadReceipt: React.FC = () => {
     try {
       const result = await receiptApi.uploadReceipt(file);
       setUploadResult(result);
-    } catch (err: any) {
-      setError(err.response?.data || 'Failed to upload receipt');
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Failed to upload receipt');
     } finally {
       setUploading(false);
     }

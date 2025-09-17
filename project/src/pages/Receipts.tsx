@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Calendar, Store, DollarSign, Search, Trash2, Edit, Eye } from 'lucide-react';
+import { Calendar, Store, Search, Trash2, Eye } from 'lucide-react';
 import { receiptApi, Receipt } from '../services/api';
 import LoadingSpinner from '../components/LoadingSpinner';
 import Header from '../components/Header';

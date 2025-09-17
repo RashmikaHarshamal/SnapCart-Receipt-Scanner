@@ -90,9 +90,9 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
       >
-        {preview || currentPicture ? (
+        {(preview || currentPicture) ? (
           <img
-            src={preview || currentPicture}
+            src={preview || currentPicture || ''}
             alt="Profile"
             className="w-full h-full object-cover"
           />

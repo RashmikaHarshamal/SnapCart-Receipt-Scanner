@@ -7,7 +7,8 @@ import Analytics from './pages/Analytics';
 import Receipts from './pages/Receipts';
 import Home from './pages/Home';
 import LogIn from './pages/LogIn';
-import RegisterForm from './pages/Registerform';
+import RegisterForm from './pages/RegisterForm';
+import Admin from './pages/Admin';
 function App() {
   return (
     <Router>
@@ -22,6 +23,7 @@ function App() {
             <Route path="/upload" element={<UploadReceipt />} />
             <Route path="/analytics" element={<Analytics />} />
             <Route path="/receipts" element={<Receipts />} />
+            <Route path="/admin" element={<Admin />} />
           </Routes>
         </main>
       </div>

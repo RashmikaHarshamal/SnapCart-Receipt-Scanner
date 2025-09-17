@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Calendar, Store, DollarSign, Search, Trash2, Edit, Eye } from 'lucide-react';
 import { receiptApi, Receipt } from '../services/api';
 import LoadingSpinner from '../components/LoadingSpinner';
+import Header from '../components/Header';
 
 const Receipts: React.FC = () => {
   const [receipts, setReceipts] = useState<Receipt[]>([]);
@@ -47,7 +48,9 @@ const Receipts: React.FC = () => {
   }
 
   return (
-    <div className="space-y-8">
+    <div>
+       <Header />
+        <div className="space-y-8">
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
@@ -229,6 +232,7 @@ const Receipts: React.FC = () => {
           </div>
         </div>
       )}
+    </div>
     </div>
   );
 };

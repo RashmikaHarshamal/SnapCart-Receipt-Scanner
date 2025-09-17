@@ -1,12 +1,12 @@
-C:\Users\USER\Desktop\New folder (2)\project\backend\src\main\java\com\snapcart\service\ReceiptService.java
-C:\Users\USER\Desktop\New folder (2)\project\backend\src\main\java\com\snapcart\config\CorsConfig.java
-C:\Users\USER\Desktop\New folder (2)\project\backend\src\main\java\com\snapcart\model\AnalyticsData.java
-C:\Users\USER\Desktop\New folder (2)\project\backend\src\main\java\com\snapcart\model\ReceiptItem.java
-C:\Users\USER\Desktop\New folder (2)\project\backend\src\main\java\com\snapcart\service\OCRService.java
-C:\Users\USER\Desktop\New folder (2)\project\backend\src\main\java\com\snapcart\controller\AnalyticsController.java
-C:\Users\USER\Desktop\New folder (2)\project\backend\src\main\java\com\snapcart\model\Receipt.java
-C:\Users\USER\Desktop\New folder (2)\project\backend\src\main\java\com\snapcart\controller\ReceiptController.java
-C:\Users\USER\Desktop\New folder (2)\project\backend\src\main\java\com\snapcart\service\AnalyticsService.java
-C:\Users\USER\Desktop\New folder (2)\project\backend\src\main\java\com\snapcart\config\GoogleVisionConfig.java
-C:\Users\USER\Desktop\New folder (2)\project\backend\src\main\java\com\snapcart\SnapCartApplication.java
-C:\Users\USER\Desktop\New folder (2)\project\backend\src\main\java\com\snapcart\repository\ReceiptRepository.java
+D:\Projects\SnapCart - Receipt Scanner\SnapCart-Receipt-Scanner\project\backend\src\main\java\com\snapcart\model\AnalyticsData.java
+D:\Projects\SnapCart - Receipt Scanner\SnapCart-Receipt-Scanner\project\backend\src\main\java\com\snapcart\SnapCartApplication.java
+D:\Projects\SnapCart - Receipt Scanner\SnapCart-Receipt-Scanner\project\backend\src\main\java\com\snapcart\controller\AnalyticsController.java
+D:\Projects\SnapCart - Receipt Scanner\SnapCart-Receipt-Scanner\project\backend\src\main\java\com\snapcart\model\Receipt.java
+D:\Projects\SnapCart - Receipt Scanner\SnapCart-Receipt-Scanner\project\backend\src\main\java\com\snapcart\repository\ReceiptRepository.java
+D:\Projects\SnapCart - Receipt Scanner\SnapCart-Receipt-Scanner\project\backend\src\main\java\com\snapcart\config\GoogleVisionConfig.java
+D:\Projects\SnapCart - Receipt Scanner\SnapCart-Receipt-Scanner\project\backend\src\main\java\com\snapcart\service\AnalyticsService.java
+D:\Projects\SnapCart - Receipt Scanner\SnapCart-Receipt-Scanner\project\backend\src\main\java\com\snapcart\service\OCRService.java
+D:\Projects\SnapCart - Receipt Scanner\SnapCart-Receipt-Scanner\project\backend\src\main\java\com\snapcart\config\CorsConfig.java
+D:\Projects\SnapCart - Receipt Scanner\SnapCart-Receipt-Scanner\project\backend\src\main\java\com\snapcart\service\ReceiptService.java
+D:\Projects\SnapCart - Receipt Scanner\SnapCart-Receipt-Scanner\project\backend\src\main\java\com\snapcart\controller\ReceiptController.java
+D:\Projects\SnapCart - Receipt Scanner\SnapCart-Receipt-Scanner\project\backend\src\main\java\com\snapcart\model\ReceiptItem.java
